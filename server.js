@@ -1,103 +1,89 @@
 const express = require("express");
-const multer = require("multer");
-const session = require("express-session");
 const path = require("path");
+const session = require("express-session");
+const uploadRoutes = require("./routes/uploadRoutes");
+const companyRoutes = require("./routes/companyRoutes");
+const productRoutes = require("./routes/productRoutes");
+
+const { requireLogin } = require("./middleware/auth");
 
 const app = express();
 
-// Cho phép đọc dữ liệu JSON gửi từ trình duyệt
+const PORT = 3000;
+
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use("/api/upload",uploadRoutes);
+
 app.use(session({
-    secret: "S21FE_Server_2026",
+    secret: "abcdecor_secret_key",
     resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 24 * 60 * 60 * 1000
-    }
+    saveUninitialized: false
 }));
 
-// Phục vụ các file trong thư mục public
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
-// Cấu hình upload
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "public/");
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname);
-    }
+app.use("/api/company", companyRoutes);
+app.use("/api/products", productRoutes);
+
+/* =========================
+   WEBSITE
+========================= */
+
+app.get("/", (req, res) => {
+
+    res.sendFile(path.join(__dirname, "views", "index.html"));
+
 });
 
-const upload = multer({ storage });
+/* =========================
+   LOGIN
+========================= */
 
-// Upload file
-app.post("/upload", upload.single("file"), (req, res) => {
-    res.json({
-        success: true,
-        message: "Upload thành công"
-    });
+app.get("/login", (req, res) => {
+
+    res.sendFile(path.join(__dirname, "views", "login.html"));
+
 });
-
-// ===== ĐĂNG NHẬP =====
-const PASSWORD = "140623";
-
-function checkLogin(req, res, next) {
-
-    if (req.session.loggedIn) {
-        return next();
-    }
-
-    res.status(401).send("Bạn chưa đăng nhập.");
-
-}
 
 app.post("/login", (req, res) => {
 
-    const { password } = req.body;
+    const { username, password } = req.body;
 
-    if (password === PASSWORD) {
+    if (username === "admin" && password === "123456") {
 
         req.session.loggedIn = true;
 
-        return res.json({
-            success: true
-        });
+        return res.redirect("/admin");
 
     }
 
-    res.status(401).json({
-        success: false,
-        message: "Sai mật khẩu"
-    });
+    res.send("Sai tài khoản hoặc mật khẩu.");
 
 });
 
-app.get("/home", checkLogin, (req, res) => {
-
-    res.sendFile(path.join(__dirname, "public", "home.html"));
-
-});
-
-app.get("/admin", checkLogin, (req, res) => {
-
-    res.sendFile(path.join(__dirname, "public", "admin.html"));
-
-});
-
-app.post("/logout", (req, res) => {
+app.get("/logout", (req, res) => {
 
     req.session.destroy(() => {
 
-        res.json({
-            success: true
-        });
+        res.redirect("/");
 
     });
 
 });
 
-// Khởi động server
-app.listen(3000, "0.0.0.0", () => {
-    console.log("Server running");
+/* =========================
+   ADMIN
+========================= */
+
+app.get("/admin", requireLogin, (req, res) => {
+
+    res.sendFile(path.join(__dirname, "views", "admin.html"));
+
+});
+
+app.listen(PORT, "0.0.0.0", () => {
+
+    console.log(`ABC Decor running at http://0.0.0.0:${PORT}`);
+
 });

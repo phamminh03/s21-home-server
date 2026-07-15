@@ -1,25 +1,151 @@
+
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Upload File</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>ABC Decor Admin</title>
+
+<link rel="stylesheet" href="/css/admin.css">
+
 </head>
+
 <body>
 
-<h2>Upload File lên S21 FE</h2>
+<div class="sidebar" id="sidebar">
 
-<form action="/upload" method="POST" enctype="multipart/form-data">
-
-    <input type="file" name="file">
-
-    <br><br>
-
-    <button type="submit">
-        Upload
+    <button id="closeSidebar" class="close-sidebar">
+        ✕
     </button>
 
-</form>
+    <div class="logo">
+
+        <span>🏠</span>
+
+        <h2>ABC Decor</h2>
+
+    </div>
+    <ul>
+
+        <li class="active">
+
+            📊 Dashboard
+
+        </li>
+
+        <li id="menuProducts">
+
+            📦 Sản phẩm
+
+        </li>
+
+        <li>
+
+            🏢 Công ty
+
+        </li>
+
+        <li>
+
+            🚪 <a href="/logout">Đăng xuất</a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="main">
+
+    <header>
+
+        <button id="toggleSidebar">
+
+            ☰
+
+        </button>
+
+        <h1>Dashboard</h1>
+
+    </header>
+
+    <main id="content">
+
+
+    </main>
+
+</div>
+<div id="productModal" class="modal">
+
+    <div class="modal-box">
+
+        <h2>Thêm sản phẩm</h2>
+
+        <form id="productForm">
+<input type="hidden" id="productId">
+            <input
+                type="text"
+                id="name"
+                placeholder="Tên sản phẩm"
+                required>
+
+            <textarea
+                id="description"
+                placeholder="Mô tả"
+                required></textarea>
+
+            <input
+                type="number"
+                id="price"
+                placeholder="Giá"
+                required>
+
+            <input
+                type="file"
+                id="image"
+                accept="image/*"
+                required>
+<p class="upload-note">
+    Chỉ hỗ trợ ảnh <strong>JPG</strong>, <strong>JPEG</strong> hoặc <strong>PNG</strong>.
+</p>
+<div class="preview-box">
+
+    <img
+    id="preview"
+    style="display:none;">
+
+
+</div>
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    id="closeModal">
+
+                    Hủy
+
+                </button>
+
+                <button
+                    type="submit">
+
+                    Lưu sản phẩm
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+<script src="/js/admin.js"></script>
 
 </body>
-</html>
 
+</html>

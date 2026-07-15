@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Bình hoa Bắc Âu",
+        "price": 490000,
+        "image": "/images/denaa.jpg",
+        "description": "Bình hoa gốm phong cách Bắc Âu."
+    },
+    {
+        "id": 2,
+        "name": "Đèn Decor",
+        "price": 890000,
+        "image": "/images/denau.jpg",
+        "description": "Đèn trang trí phòng khách."
+    },
+    {
+        "id": 1784123361839,
+        "name": "Đèn chùm decor",
+        "description": "Đèn decor châu Âu",
+        "price": 1500000,
+        "image": "/images/1784123361798.jpg"
+    },
+    {
+        "id": 1784126804662,
+        "name": "Đèn ngủ",
+        "description": "Đèn ngủ ABC",
+        "price": 500000,
+        "image": "/images/1784126804632.jpg"
+    }
+]

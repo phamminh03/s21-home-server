@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC Decor</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="container">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ABC
+            </div>
+
+            <div class="logo-text">
+
+                <h2 id="companyName">ABC Decor</h2>
+
+                <span>Decor & Home</span>
+
+            </div>
+
+        </div>
+
+        <nav>
+
+            <a href="#">Trang chủ</a>
+
+            <a href="#">Sản phẩm</a>
+
+            <a href="#">Giới thiệu</a>
+
+            <a href="#">Liên hệ</a>
+
+        </nav>
+<button id="menuBtn" class="menu-btn">
+    ☰
+</button>
+    </div>
+
+</header>
+<div id="mobileMenu" class="mobile-menu">
+
+    <button id="closeMenu" class="close-menu">
+        ✕
+    </button>
+
+    <a href="#hero">Trang chủ</a>
+    <a href="#products">Sản phẩm</a>
+    <a href="#about">Giới thiệu</a>
+    <a href="#contact">Liên hệ</a>
+
+</div>
+<section class="hero" id="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <h1 id="companyDescription">Loading...</h1>
+
+        <p>
+
+            Chuyên cung cấp đồ trang trí nhà cửa hiện đại,
+            tinh tế và sang trọng.
+
+        </p>
+
+        <div class="buttons">
+
+            <button class="btn-primary">
+
+                Khám phá ngay
+
+            </button>
+
+            <button class="btn-outline">
+
+                Liên hệ
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="features">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>Lý do khách hàng tin tưởng</span>
+
+            <h2>Tại sao chọn ABC Decor?</h2>
+
+            <p>
+                Chúng tôi mang đến không gian sống hiện đại,
+                tinh tế và chất lượng.
+            </p>
+
+        </div>
+
+        <div class="feature-slider">
+
+    <button class="arrow prev">&#10094;</button>
+
+    <div class="slider-window">
+
+        <div class="slider-track">
+
+            <div class="feature-card">
+                <div class="icon">🚚</div>
+                <h3>Miễn phí vận chuyển</h3>
+                <p>Hỗ trợ giao hàng toàn quốc.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🪵</div>
+                <h3>Chất liệu cao cấp</h3>
+                <p>Sản phẩm được tuyển chọn kỹ lưỡng.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🎨</div>
+                <h3>Thiết kế hiện đại</h3>
+                <p>Đa dạng phong cách trang trí.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">🛡️</div>
+                <h3>Bảo hành uy tín</h3>
+                <p>Chính sách bảo hành rõ ràng.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <button class="arrow next">&#10095;</button>
+
+</div>
+
+        <div class="dots">
+
+            <span class="active"></span>
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="products">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span>Sản phẩm nổi bật</span>
+
+            <h2>Khám phá bộ sưu tập</h2>
+
+            <p>
+                Những sản phẩm được khách hàng yêu thích.
+            </p>
+
+        </div>
+
+<div id="productList" class="product-grid"></div>
+    </div>
+
+</section>
+<script type="module"  src="/js/app.js"></script>
+
+</body>
+
+</html>
