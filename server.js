@@ -1,3 +1,10 @@
+const https = require("https");
+const fs = require("fs");
+const os = require("os");
+const sslOptions = {
+    key: fs.readFileSync("./cert/key.pem"),
+    cert: fs.readFileSync("./cert/cert.pem")
+};
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
@@ -81,9 +88,41 @@ app.get("/admin", requireLogin, (req, res) => {
     res.sendFile(path.join(__dirname, "views", "admin.html"));
 
 });
+function getLocalIP() {
 
-app.listen(PORT, "0.0.0.0", () => {
+    const interfaces = os.networkInterfaces();
 
-    console.log(`ABC Decor running at http://0.0.0.0:${PORT}`);
+    for (const name of Object.keys(interfaces)) {
+
+        for (const net of interfaces[name]) {
+
+            if (
+                net.family === "IPv4" &&
+                !net.internal
+            ) {
+
+                return net.address;
+
+            }
+
+        }
+
+    }
+
+    return "localhost";
+
+}
+
+https.createServer(sslOptions, app).listen(PORT, "0.0.0.0", () => {
+
+    const ip = getLocalIP();
+
+    console.log("");
+    console.log("==================================");
+    console.log(" ABC Decor HTTPS Server");
+    console.log("==================================");
+    console.log(`HTTPS : https://${ip}:${PORT}`);
+    console.log("==================================");
+    console.log("");
 
 });
